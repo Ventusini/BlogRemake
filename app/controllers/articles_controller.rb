@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
    before_action :require_user, except:[:index, :show]
    before_action :require_same_user, only:[:edit, :update, :destroy]
    
+   
    def new
        @article = Article.new
    end
@@ -61,10 +62,12 @@ class ArticlesController < ApplicationController
    end
    
    def require_same_user
-      if current_user != @article.user
+      if current_user != @article.user and !current_user.admin?
          flash[:danger]="No se arma men"
          redirect_to root_path
       end
    end
+   
+   
 
 end
