@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   
   resources :articles
+  get 'try', to: 'json#to_json'
+  get 'try2', to: 'json#to_json2'
   
   get 'signup', to: 'users#new'
   resources :users, except:[:new]
